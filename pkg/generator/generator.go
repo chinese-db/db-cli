@@ -117,7 +117,7 @@ func renderPath(path string, data map[string]interface{}) string {
 	if strings.HasSuffix(renderedPath, ".tpl") {
 		renderedPath = strings.TrimSuffix(renderedPath, ".tpl")
 	}
-	return buf.String()
+	return renderedPath
 }
 
 // renderFile 渲染单个文件
