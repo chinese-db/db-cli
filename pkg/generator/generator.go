@@ -9,6 +9,14 @@ import (
 	"text/template"
 )
 
+// ServiceConfig 服务配置
+type ServiceConfig struct {
+	ServiceType string // 服务类型 (rpc/api)
+	ServiceName string // 服务名称
+	Port        string // 端口号
+	Version     string
+}
+
 // GenerateService 动态生成服务
 func GenerateService(serviceType, serviceName, version, port string) error {
 	config := NewTemplateConfig()
@@ -104,6 +112,10 @@ func renderPath(path string, data map[string]interface{}) string {
 	var buf strings.Builder
 	if err := tpl.Execute(&buf, data); err != nil {
 		return path // 回退原始路径
+	}
+	renderedPath := buf.String()
+	if strings.HasSuffix(renderedPath, ".tpl") {
+		renderedPath = strings.TrimSuffix(renderedPath, ".tpl")
 	}
 	return buf.String()
 }
