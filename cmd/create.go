@@ -43,7 +43,7 @@ func promptUser() (*generator.ServiceConfig, error) {
 		},
 		{
 			Name:     "ServiceName",
-			Prompt:   &survey.Input{Message: "输入服务名称（英文）:"},
+			Prompt:   &survey.Input{Message: "输入服务名称（英文,推荐使用_）:"},
 			Validate: survey.Required,
 		},
 		{
